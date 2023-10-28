@@ -43,9 +43,22 @@ function deleteCanvas() {
   while (board.hasChildNodes()) board.removeChild(board.firstChild);
 }
 
+function checkNewBoardSide(side) {
+  side = +side;
+  if (!isNaN(side)) {
+    side = Math.floor(side);
+    if (side < 2) return 2;
+    if (side > 100) return 100;
+    return side;
+  }
+}
+
 const board = document.querySelector("div.board");
 const clearBtn = document.querySelector(".clearBtn");
-let boardSide = 32;
+const redrawBtn = document.querySelector(".redrawCanvasBtn");
+const canvasSizeInput = document.querySelector(".canvasSizeInput");
+const DEFAULT_BOARD_SIDE = 16;
+let boardSide = DEFAULT_BOARD_SIDE;
 
 drawCanvas();
 
@@ -59,14 +72,27 @@ document.addEventListener("contextmenu", function (e) {
 let leftClickHeld = false;
 let rightClickHeld = false;
 
-board.addEventListener("mousedown", (e) => {
+document.addEventListener("mousedown", (e) => {
   if (e.button == 0) leftClickHeld = true;
   else if (e.button == 2) rightClickHeld = true;
 });
 
-board.addEventListener("mouseup", (e) => {
+document.addEventListener("mouseup", (e) => {
   if (e.button == 0) leftClickHeld = false;
   else if (e.button == 2) rightClickHeld = false;
 });
 
 clearBtn.addEventListener("click", clearCanvas);
+
+redrawBtn.addEventListener("click", () => {
+  if (canvasSizeInput.value) {
+    let newBoardSide = checkNewBoardSide(canvasSizeInput.value);
+    if (newBoardSide) {
+      deleteCanvas();
+      drawCanvas(newBoardSide);
+    } else
+      alert("Canvas size must be an integer between 2 and 100. Please retry");
+
+    canvasSizeInput.value = "";
+  }
+});
