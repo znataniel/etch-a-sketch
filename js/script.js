@@ -3,14 +3,21 @@ const BOARD_WIDTH = 50;
 
 const board = document.querySelector("div.board");
 
-let mouseHeldFlag = false;
-
-document.addEventListener("mousedown", () => {
-  mouseHeldFlag = true;
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
 });
 
-document.addEventListener("mouseup", () => {
-  mouseHeldFlag = false;
+let leftClickHeld = false;
+let rightClickHeld = false;
+
+board.addEventListener("mousedown", (e) => {
+  if (e.button == 0) leftClickHeld = true;
+  else if (e.button == 2) rightClickHeld = true;
+});
+
+board.addEventListener("mouseup", (e) => {
+  if (e.button == 0) leftClickHeld = false;
+  else if (e.button == 2) rightClickHeld = false;
 });
 
 for (let i = 0; i < BOARD_HEIGHT; i++) {
@@ -21,12 +28,11 @@ for (let i = 0; i < BOARD_HEIGHT; i++) {
     unit.classList.add("unit");
 
     unit.addEventListener("mouseenter", function () {
-      if (mouseHeldFlag) unit.classList.add("colored");
+      if (leftClickHeld) unit.classList.add("colored");
+      else if (rightClickHeld) unit.classList.remove("colored");
     });
 
     row.appendChild(unit);
   }
   board.appendChild(row);
 }
-
-board.addEventListener();
