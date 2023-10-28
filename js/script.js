@@ -27,13 +27,25 @@ function drawCanvas(side = boardSide) {
   }
 }
 
+function clearCanvas() {
+  let __rows = board.querySelectorAll("div");
+  // console.log(typeof row);
+  __rows.forEach((row) => {
+    let __units = row.querySelectorAll("div");
+    __units.forEach((unit) => {
+      unit.classList.remove("colored");
+    });
+  });
+}
+
 // Deletes the canvas.
 function deleteCanvas() {
   while (board.hasChildNodes()) board.removeChild(board.firstChild);
 }
 
 const board = document.querySelector("div.board");
-let boardSide = 8;
+const clearBtn = document.querySelector(".clearBtn");
+let boardSide = 32;
 
 drawCanvas();
 
@@ -56,3 +68,5 @@ board.addEventListener("mouseup", (e) => {
   if (e.button == 0) leftClickHeld = false;
   else if (e.button == 2) rightClickHeld = false;
 });
+
+clearBtn.addEventListener("click", clearCanvas);
