@@ -7,9 +7,18 @@ function drawCanvas(side = boardSide) {
       let unit = document.createElement("div");
       unit.classList.add("unit");
 
+      // Add event listeners to color/uncolor a square if the user hovers it
+      // while holding click.
       unit.addEventListener("mouseenter", function () {
         if (leftClickHeld) unit.classList.add("colored");
         else if (rightClickHeld) unit.classList.remove("colored");
+      });
+
+      // Add event listeners to color/uncolor a square
+      // if the user clicks on it.
+      unit.addEventListener("mousedown", (e) => {
+        if (e.button == 0) unit.classList.add("colored");
+        else if (e.button == 2) unit.classList.remove("colored");
       });
 
       row.appendChild(unit);
@@ -24,7 +33,7 @@ function deleteCanvas() {
 }
 
 const board = document.querySelector("div.board");
-let boardSide = 32;
+let boardSide = 8;
 
 drawCanvas();
 
