@@ -9,6 +9,11 @@ for (let i = 0; i < BOARD_HEIGHT; i++) {
   for (let j = 0; j < BOARD_WIDTH; j++) {
     let unit = document.createElement("div");
     unit.classList.add("unit");
+
+    unit.addEventListener("click", function () {
+      unit.style.backgroundColor = "lightgreen";
+    });
+
     row.appendChild(unit);
   }
   board.appendChild(row);
