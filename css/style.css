@@ -1,3 +1,12 @@
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .board {
   display: flex;
   flex-direction: column;
@@ -22,4 +31,8 @@
 
 .unit:hover {
   background-color: #ffc0cbaf; /* light pink */
+}
+
+.colored {
+  background-color: lightgreen;
 }
