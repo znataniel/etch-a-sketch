@@ -29,7 +29,6 @@ function drawCanvas(side = boardSide) {
 
 function clearCanvas() {
   let __rows = board.querySelectorAll("div");
-  // console.log(typeof row);
   __rows.forEach((row) => {
     let __units = row.querySelectorAll("div");
     __units.forEach((unit) => {
@@ -53,10 +52,22 @@ function checkNewBoardSide(side) {
   }
 }
 
+function toggleGrid() {
+  let __rows = board.querySelectorAll("div");
+  __rows.forEach((row) => {
+    let __units = row.querySelectorAll("div");
+    __units.forEach((unit) => {
+      if (!unit.id) unit.setAttribute("id", "noGrid");
+      else unit.removeAttribute("id", "noGrid");
+    });
+  });
+}
+
 const board = document.querySelector("div.board");
 const clearBtn = document.querySelector(".clearBtn");
 const redrawBtn = document.querySelector(".redrawCanvasBtn");
 const canvasSizeInput = document.querySelector(".canvasSizeInput");
+const toggleGridBtn = document.querySelector(".toggleGridBtn");
 const DEFAULT_BOARD_SIDE = 16;
 let boardSide = DEFAULT_BOARD_SIDE;
 
@@ -96,3 +107,5 @@ redrawBtn.addEventListener("click", () => {
     canvasSizeInput.value = "";
   }
 });
+
+toggleGridBtn.addEventListener("click", toggleGrid);
