@@ -5,23 +5,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="header">etcherino-a-sketcherino</div>
+    <div class="header">Play with pixel art!</div>
     <div class="mainContent">
       <div class="board"></div>
       <div class="btnContainer">
         <button type="button" class="clearBtn">Clear</button>
         <div class="boardSettings">
-          <button type="button" class="redrawCanvasBtn">
-            Apply canvas size
-          </button>
+          <button type="button" class="redrawCanvasBtn">Apply size</button>
           <input
             type="text"
             class="canvasSizeInput"
-            placeholder="2 - 100 | Default: 16"
+            placeholder="Edit board size (2 -- 100)"
             value=""
           />
+        </div>
+        <button type="button" class="toggleGridBtn">Toggle Grid</button>
+        <div class="instructions">
+          <p>Left click to color.</p>
+          <p>Right click to erase.</p>
+          <p>Hold click and drag to affect multiple squares.</p>
         </div>
       </div>
     </div>
