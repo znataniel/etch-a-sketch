@@ -1,4 +1,2 @@
 # etch-a-sketch
-etch-a-sketch.
-
-Background Image by lifeforstock on Freepik 
+etch-a-sketch/pixel art demo website. 
